@@ -3,150 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora PWA</title>
-
-  <!-- Manifest para PWA -->
-  <link rel="manifest" href="/Calculadora-PWA/manifest.json">
-
-  <!-- Color de la barra superior en móviles -->
-  <meta name="theme-color" content="#222222">
-
-  <!-- Icono -->
-  <link rel="icon" href="/Calculadora-PWA/icon-192.png" type="image/png">
-
+  <title>Tienda de Peces</title>
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f4f4f4;
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      color: #333;
     }
-    .calculadora {
-      background: #222;
+    header {
+      background: #006994;
+      color: white;
       padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+      text-align: center;
     }
-    #resultado {
-      width: 100%;
-      height: 60px;
-      font-size: 2rem;
-      text-align: right;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 10px;
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    nav {
+      background: #004d66;
       padding: 10px;
-      background: #eee;
+      text-align: center;
     }
-    .botones {
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background: url("https://images.unsplash.com/photo-1517832207067-4db24a2ae47c") no-repeat center center/cover;
+      color: white;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    .catalogo {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .catalogo h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #006994;
+    }
+    .productos {
       display: grid;
-      grid-template-columns: repeat(4, 70px);
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
     }
-    button {
-      height: 60px;
-      font-size: 1.5rem;
-      border: none;
+    .producto {
+      background: white;
       border-radius: 10px;
-      cursor: pointer;
-      transition: 0.2s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      transition: transform 0.2s;
     }
-    button:hover {
-      opacity: 0.8;
+    .producto img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
     }
-    .operador {
-      background: #ff9500;
-      color: #fff;
+    .producto h3 {
+      margin: 10px 0 5px;
+      font-size: 1.2rem;
+      color: #004d66;
     }
-    .numero {
-      background: #333;
-      color: #fff;
+    .producto p {
+      font-size: 0.9rem;
     }
-    .especial {
-      background: #a6a6a6;
-      color: #000;
+    .producto:hover {
+      transform: scale(1.05);
     }
     footer {
-      margin-top: 15px;
+      background: #004d66;
+      color: white;
       text-align: center;
-      font-size: 0.8rem;
-      color: #666;
-    }
-    footer a {
-      color: #666;
-      text-decoration: none;
+      padding: 15px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <div>
-    <div class="calculadora">
-      <input type="text" id="resultado" disabled>
-      <div class="botones">
-        <button class="especial" onclick="borrar()">C</button>
-        <button class="especial" onclick="borrarUltimo()">⌫</button>
-        <button class="especial" onclick="insertar('.')">.</button>
-        <button class="operador" onclick="insertar('/')">÷</button>
+  <header>
+    <h1>🐟 Tienda de Peces</h1>
+    <p>Los mejores peces para tu acuario</p>
+  </header>
 
-        <button class="numero" onclick="insertar('7')">7</button>
-        <button class="numero" onclick="insertar('8')">8</button>
-        <button class="numero" onclick="insertar('9')">9</button>
-        <button class="operador" onclick="insertar('*')">×</button>
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#">Catálogo</a>
+    <a href="#">Ofertas</a>
+    <a href="#">Contacto</a>
+  </nav>
 
-        <button class="numero" onclick="insertar('4')">4</button>
-        <button class="numero" onclick="insertar('5')">5</button>
-        <button class="numero" onclick="insertar('6')">6</button>
-        <button class="operador" onclick="insertar('-')">−</button>
+  <section class="hero">
+    <h2>Bienvenido a la Tienda de Peces</h2>
+    <p>Explora nuestra colección de peces tropicales, de agua dulce y marina.</p>
+  </section>
 
-        <button class="numero" onclick="insertar('1')">1</button>
-        <button class="numero" onclick="insertar('2')">2</button>
-        <button class="numero" onclick="insertar('3')">3</button>
-        <button class="operador" onclick="insertar('+')">+</button>
-
-        <button class="numero" onclick="insertar('0')" style="grid-column: span 2;">0</button>
-        <button class="especial" onclick="calcular()" style="grid-column: span 2;">=</button>
+  <section class="catalogo">
+    <h2>Nuestros Peces</h2>
+    <div class="productos">
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1603052875362-5db7623e587f" alt="Pez Betta">
+        <h3>Pez Betta</h3>
+        <p>Colorido y elegante. Ideal para acuarios pequeños.</p>
+      </div>
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1520222469209-63a58d5ee64a" alt="Pez Dorado">
+        <h3>Pez Dorado</h3>
+        <p>El clásico pez de acuario, resistente y fácil de cuidar.</p>
+      </div>
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1612214070473-1e8e5a1eecd7" alt="Pez Guppy">
+        <h3>Pez Guppy</h3>
+        <p>Pequeño, activo y con gran variedad de colores.</p>
       </div>
     </div>
+  </section>
 
-    <footer>
-      Icono de <a href="https://www.flaticon.com/free-icons/calculator" target="_blank" rel="noopener noreferrer">Flaticon</a>
-    </footer>
-  </div>
-
-  <script>
-    const resultado = document.getElementById("resultado");
-
-    function insertar(valor) {
-      resultado.value += valor;
-    }
-
-    function borrar() {
-      resultado.value = "";
-    }
-
-    function borrarUltimo() {
-      resultado.value = resultado.value.slice(0, -1);
-    }
-
-    function calcular() {
-      try {
-        resultado.value = eval(resultado.value);
-      } catch {
-        resultado.value = "Error";
-      }
-    }
-  </script>
-
-  <!-- Registro del Service Worker -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/Calculadora-PWA/sw.js").then(() => {
-        console.log("✅ Service Worker registrado");
-      }).catch(err => console.error("❌ Error SW:", err));
-    }
-  </script>
+  <footer>
+    <p>© 2025 Tienda de Peces | Todos los derechos reservados</p>
+  </footer>
 </body>
 </html>
