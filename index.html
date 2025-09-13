@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora PWA</title>
 
-  <!-- Manifest y colores PWA -->
+  <!-- 📌 Manifest para PWA -->
   <link rel="manifest" href="manifest.json">
+
+  <!-- 📌 Color de la barra superior en móviles -->
   <meta name="theme-color" content="#222222">
 
-  <!-- Icono principal -->
+  <!-- 📌 Icono de la calculadora -->
+  <!-- ⚠️ Descarga el icono de Flaticon en 192x192 y 512x512 px -->
+  <!-- Guárdalos en la carpeta raíz con estos nombres: icon-192.png e icon-512.png -->
   <link rel="icon" href="icon-192.png" type="image/png">
 
   <style>
@@ -75,5 +79,82 @@
       color: #666;
     }
     footer a {
-      col
+      color: #666;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <!-- 📌 CALCULADORA -->
+    <div class="calculadora">
+      <input type="text" id="resultado" disabled>
+      <div class="botones">
+        <button class="especial" onclick="borrar()">C</button>
+        <button class="especial" onclick="borrarUltimo()">⌫</button>
+        <button class="especial" onclick="insertar('.')">.</button>
+        <button class="operador" onclick="insertar('/')">÷</button>
 
+        <button class="numero" onclick="insertar('7')">7</button>
+        <button class="numero" onclick="insertar('8')">8</button>
+        <button class="numero" onclick="insertar('9')">9</button>
+        <button class="operador" onclick="insertar('*')">×</button>
+
+        <button class="numero" onclick="insertar('4')">4</button>
+        <button class="numero" onclick="insertar('5')">5</button>
+        <button class="numero" onclick="insertar('6')">6</button>
+        <button class="operador" onclick="insertar('-')">−</button>
+
+        <button class="numero" onclick="insertar('1')">1</button>
+        <button class="numero" onclick="insertar('2')">2</button>
+        <button class="numero" onclick="insertar('3')">3</button>
+        <button class="operador" onclick="insertar('+')">+</button>
+
+        <button class="numero" onclick="insertar('0')" style="grid-column: span 2;">0</button>
+        <button class="especial" onclick="calcular()" style="grid-column: span 2;">=</button>
+      </div>
+    </div>
+
+    <!-- 📌 ATRIBUCIÓN OBLIGATORIA DEL ICONO -->
+    <footer>
+      Icono de <a href="https://www.flaticon.com/free-icons/calculator" target="_blank" rel="noopener noreferrer">
+        Flaticon
+      </a>
+    </footer>
+  </div>
+
+  <!-- 📌 Script de la calculadora -->
+  <script>
+    const resultado = document.getElementById("resultado");
+
+    function insertar(valor) {
+      resultado.value += valor;
+    }
+
+    function borrar() {
+      resultado.value = "";
+    }
+
+    function borrarUltimo() {
+      resultado.value = resultado.value.slice(0, -1);
+    }
+
+    function calcular() {
+      try {
+        resultado.value = eval(resultado.value);
+      } catch {
+        resultado.value = "Error";
+      }
+    }
+  </script>
+
+  <!-- 📌 Registro del Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js").then(() => {
+        console.log("✅ Service Worker registrado");
+      });
+    }
+  </script>
+</body>
+</html>
