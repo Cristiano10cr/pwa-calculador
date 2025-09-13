@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora</title>
+  <title>Calculadora PWA</title>
+
+  <!-- Manifest y colores PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#222222">
+
+  <!-- Icono principal -->
+  <link rel="icon" href="icon-192.png" type="image/png">
+
   <style>
     body {
       display: flex;
@@ -12,6 +20,7 @@
       height: 100vh;
       background: #f4f4f4;
       font-family: Arial, sans-serif;
+      margin: 0;
     }
     .calculadora {
       background: #222;
@@ -58,59 +67,13 @@
       background: #a6a6a6;
       color: #000;
     }
-  </style>
-</head>
-<body>
-  <div class="calculadora">
-    <input type="text" id="resultado" disabled>
-    <div class="botones">
-      <button class="especial" onclick="borrar()">C</button>
-      <button class="especial" onclick="borrarUltimo()">⌫</button>
-      <button class="especial" onclick="insertar('.')">.</button>
-      <button class="operador" onclick="insertar('/')">÷</button>
 
-      <button class="numero" onclick="insertar('7')">7</button>
-      <button class="numero" onclick="insertar('8')">8</button>
-      <button class="numero" onclick="insertar('9')">9</button>
-      <button class="operador" onclick="insertar('*')">×</button>
-
-      <button class="numero" onclick="insertar('4')">4</button>
-      <button class="numero" onclick="insertar('5')">5</button>
-      <button class="numero" onclick="insertar('6')">6</button>
-      <button class="operador" onclick="insertar('-')">−</button>
-
-      <button class="numero" onclick="insertar('1')">1</button>
-      <button class="numero" onclick="insertar('2')">2</button>
-      <button class="numero" onclick="insertar('3')">3</button>
-      <button class="operador" onclick="insertar('+')">+</button>
-
-      <button class="numero" onclick="insertar('0')" style="grid-column: span 2;">0</button>
-      <button class="especial" onclick="calcular()" style="grid-column: span 2;">=</button>
-    </div>
-  </div>
-
-  <script>
-    const resultado = document.getElementById("resultado");
-
-    function insertar(valor) {
-      resultado.value += valor;
+    footer {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
     }
+    footer a {
+      col
 
-    function borrar() {
-      resultado.value = "";
-    }
-
-    function borrarUltimo() {
-      resultado.value = resultado.value.slice(0, -1);
-    }
-
-    function calcular() {
-      try {
-        resultado.value = eval(resultado.value);
-      } catch {
-        resultado.value = "Error";
-      }
-    }
-  </script>
-</body>
-</html>
