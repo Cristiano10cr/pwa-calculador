@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda de Peces</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#006994">
   <style>
     body {
       margin: 0;
@@ -139,5 +141,13 @@
   <footer>
     <p>© 2025 Tienda de Peces | Todos los derechos reservados</p>
   </footer>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js")
+      .then(reg => console.log("✅ Service Worker registrado:", reg))
+      .catch(err => console.error("❌ Error al registrar Service Worker:", err));
+    }
+  </script>
 </body>
 </html>
