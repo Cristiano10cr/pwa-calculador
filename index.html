@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora PWA</title>
 
-  <!-- 📌 Manifest para PWA -->
-  <link rel="manifest" href="manifest.json">
+  <!-- Manifest para PWA -->
+  <link rel="manifest" href="/Calculadora-PWA/manifest.json">
 
-  <!-- 📌 Color de la barra superior en móviles -->
+  <!-- Color de la barra superior en móviles -->
   <meta name="theme-color" content="#222222">
 
-  <!-- 📌 Icono de la calculadora -->
-  <!-- ⚠️ Descarga el icono de Flaticon en 192x192 y 512x512 px -->
-  <!-- Guárdalos en la carpeta raíz con estos nombres: icon-192.png e icon-512.png -->
-  <link rel="icon" href="icon-192.png" type="image/png">
+  <!-- Icono -->
+  <link rel="icon" href="/Calculadora-PWA/icon-192.png" type="image/png">
 
   <style>
     body {
@@ -71,7 +69,6 @@
       background: #a6a6a6;
       color: #000;
     }
-
     footer {
       margin-top: 15px;
       text-align: center;
@@ -86,7 +83,6 @@
 </head>
 <body>
   <div>
-    <!-- 📌 CALCULADORA -->
     <div class="calculadora">
       <input type="text" id="resultado" disabled>
       <div class="botones">
@@ -115,15 +111,11 @@
       </div>
     </div>
 
-    <!-- 📌 ATRIBUCIÓN OBLIGATORIA DEL ICONO -->
     <footer>
-      Icono de <a href="https://www.flaticon.com/free-icons/calculator" target="_blank" rel="noopener noreferrer">
-        Flaticon
-      </a>
+      Icono de <a href="https://www.flaticon.com/free-icons/calculator" target="_blank" rel="noopener noreferrer">Flaticon</a>
     </footer>
   </div>
 
-  <!-- 📌 Script de la calculadora -->
   <script>
     const resultado = document.getElementById("resultado");
 
@@ -148,12 +140,12 @@
     }
   </script>
 
-  <!-- 📌 Registro del Service Worker -->
+  <!-- Registro del Service Worker -->
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js").then(() => {
+      navigator.serviceWorker.register("/Calculadora-PWA/sw.js").then(() => {
         console.log("✅ Service Worker registrado");
-      });
+      }).catch(err => console.error("❌ Error SW:", err));
     }
   </script>
 </body>
